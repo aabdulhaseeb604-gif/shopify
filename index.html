@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Counter & Signup App</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f2f2f2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:30px;
+}
+
+.box{
+    background:white;
+    width:300px;
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0 4px 8px rgba(0,0,0,0.1);
+    margin-bottom:30px;
+    text-align:center;
+}
+
+/* Counter */
+#count{
+    font-size:45px;
+    margin:15px 0;
+}
+
+.counter-btns button{
+    padding:10px 15px;
+    margin:5px;
+    font-size:16px;
+    border:none;
+    border-radius:5px;
+    background:#7fbf7f;
+    color:white;
+    cursor:pointer;
+}
+
+/* Signup */
+.input-group{
+    position:relative;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.show-btn{
+    position:absolute;
+    right:8px;
+    top:16px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    color:#4a7a4a;
+}
+
+.password-preview{
+    margin-top:5px;
+    font-size:14px;
+    color:#333;
+    background:#eef6ee;
+    padding:6px;
+    border-radius:4px;
+}
+
+.signup-btn{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    background:#7fbf7f;
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Counter App -->
+<div class="box">
+    <h3>Counter App</h3>
+    <div id="count">0</div>
+
+    <div class="counter-btns">
+        <button onclick="decrement()">➖</button>
+        <button onclick="reset()">🔄 Reset</button>
+        <button onclick="increment()">➕</button>
+    </div>
+</div>
+
+<!-- Signup Page -->
+<div class="box">
+    <h3>Signup Page</h3>
+
+    <input type="text" placeholder="Username">
+    <input type="email" placeholder="Email">
+
+    <div class="input-group">
+        <input type="password" id="password" placeholder="Password" oninput="showPasswordText()">
+        <button class="show-btn" onclick="togglePassword()">Show</button>
+    </div>
+
+    <!-- Live Password Show -->
+    <div class="password-preview">
+        Password: <span id="passwordText"></span>
+    </div>
+
+    <button class="signup-btn">Signup</button>
+</div>
+
+<script>
+let count = 0;
+
+function increment(){
+    count++;
+    document.getElementById("count").innerText = count;
+}
+
+function decrement(){
+    count--;
+    document.getElementById("count").innerText = count;
+}
+
+function reset(){
+    count = 0;
+    document.getElementById("count").innerText = count;
+}
+
+// Show typed password live
+function showPasswordText(){
+    let pass = document.getElementById("password").value;
+    document.getElementById("passwordText").innerText = pass;
+}
+
+// Show / Hide password
+function togglePassword(){
+    let pass = document.getElementById("password");
+    let btn = event.target;
+
+    if(pass.type === "password"){
+        pass.type = "text";
+        btn.innerText = "Hide";
+    }else{
+        pass.type = "password";
+        btn.innerText = "Show";
+    }
+}
+</script>
+
+</body>
+</html>
